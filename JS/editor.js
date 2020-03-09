@@ -8,22 +8,6 @@ var editorHTML = ace.edit("editorHTML");
 editorHTML.setTheme("ace/theme/xcode");
 editorHTML.session.setMode("ace/mode/html");
 editorHTML.session.setNewLineMode("unix");
-editorHTML.setValue("<html>\n" +
-    "    <head>\n" +
-    "        <title> Code Runner </title>\n" +
-    "        <style>\n" +
-    "            /*USE THE CSS TAB TO ENTER CSS COMMANDS*/\n" +
-    "        </style>\n" +
-    "           <!--USE THE CDN TAB TO INCLUDE 3rd PARTY STYLESHEETS AND SCRIPTS-->\n" +
-    "    </head>\n" +
-    "    <body>\n" +
-    "        <!--Enter content here-->\n" +
-    "        Hello World\n" +
-    "    </body>\n" +
-    "    <script>\n" +
-    "        // USE THE SCRIPT TAB TO ENTER JS CODE\n" +
-    "    </script>\n" +
-    "</html>");
 editorHTML.setOptions({
     enableBasicAutocompletion: true,
     enableSnippets: true,
@@ -55,7 +39,25 @@ editorCSS.setOptions({
 
 window.onload = function ()
 {
+    editorHTML.setValue("<html>\n" +
+        "    <head>\n" +
+        "        <title> Code Runner </title>\n" +
+        "        <style>\n" +
+        "            /*USE THE CSS TAB TO ENTER CSS COMMANDS*/\n" +
+        "        </style>\n" +
+        "           <!--USE THE CDN TAB TO INCLUDE 3rd PARTY STYLESHEETS AND SCRIPTS-->\n" +
+        "    </head>\n" +
+        "    <body>\n" +
+        "        <!--Enter content here-->\n" +
+        "        <h1> HELLO WORLD </h1>\n" +
+        "    </body>\n" +
+        "    <script>\n" +
+        "        // USE THE SCRIPT TAB TO ENTER JS CODE\n" +
+        "    </script>\n" +
+        "</html>");
+    localStorage.setItem(queryparamname, getHTMLContent());
     generatePreviewContent();
+    //generatePreviewContent();
 }
 
 var getHTMLContent = function () {
@@ -245,11 +247,23 @@ var getQueryStringValue = function (key) {
 }
 
 var queryparamname = getQueryStringValue("name");
-document.getElementById("tabname").innerText = queryparamname;
+
+//document.getElementById("tabname").innerText = queryparamname;
 if (typeof localStorage[queryparamname] != "undefined") {
     setHTMLContent(localStorage[queryparamname]);
     generatePreviewContent();
     setTimeout(function () {
         beautifyHTML();
     }, 500);
+}
+
+
+function newPage(){
+    var url = "data:text/html;charset=utf-8," + escape(localStorage[queryparamname]);
+    var tabOrWindow = window.open(url, '_blank');
+    tabOrWindow.focus();
+}
+
+function clearCR() {
+    location.reload();
 }

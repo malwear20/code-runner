@@ -42,13 +42,3 @@ function changeTab(tabNumber) {
             break;
     }
 }
-
-function newPage(){
-    var url = document.getElementById('output').src;
-    var tabOrWindow = window.open(url, '_blank');
-    tabOrWindow.focus();
-}
-
-function clearCR() {
-    location.reload();
-}

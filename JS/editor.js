@@ -30,7 +30,7 @@ var editorCSS = ace.edit("editorCSS");
 editorCSS.setTheme("ace/theme/xcode");
 editorCSS.session.setMode("ace/mode/css");
 editorCSS.session.setNewLineMode("unix");
-editorCSS.session.setValue("/*Enter your stylesheets here*/");
+editorCSS.session.setValue("/*Enter your CSS rules here*/");
 editorCSS.setOptions({
     enableBasicAutocompletion: true,
     enableSnippets: true,
@@ -43,8 +43,10 @@ window.onload = function ()
         "    <head>\n" +
         "        <title> Code Runner </title>\n" +
         "        <style>\n" +
-        "            /*USE THE CSS TAB TO ENTER CSS COMMANDS*/\n" +
+        "            /*USE THE CSS TAB TO ENTER CSS RULES*/\n" +
+        "            /*DO NOT ENTER CSS RULES HERE*/\n" +
         "        </style>\n" +
+        "           <!--DO NOT INCLUDE CDN LINKS TO LIBRARIES HERE-->\n" +
         "           <!--USE THE CDN TAB TO INCLUDE 3rd PARTY STYLESHEETS AND SCRIPTS-->\n" +
         "    </head>\n" +
         "    <body>\n" +
@@ -53,6 +55,7 @@ window.onload = function ()
         "    </body>\n" +
         "    <script>\n" +
         "        // USE THE SCRIPT TAB TO ENTER JS CODE\n" +
+        "        // DO NOT ENTER JS CODE HERE\n" +
         "    </script>\n" +
         "</html>");
     localStorage.setItem(queryparamname, getHTMLContent());
